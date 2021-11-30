@@ -25,3 +25,4 @@ assertEqual(words.length, 3); // original array should still have 3 elements!
 
 const w = tail(words);
 assertEqual(w.length, 3);
+module.exports = tail; 

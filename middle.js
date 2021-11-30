@@ -1,56 +1,41 @@
-// // TEST/ASSERTION FUNCTIONS
-// const eqArrays = function (arr1, arr2) {
-//   let isTrue = null;
-//   if (arr1.length !== arr2.length)
-//     return false
-//   for (let i = 0; i < arr1.length; i++) {
-//     if (arr1[i] !== arr2[i]) {
-//       isTrue = false;
-//     } else {
-//       isTrue = true;
-//     }
-//   }
-//   return isTrue;
-// };
-
-// const assertArraysEqual = function (a, b) {
-//   if (eqArrays(a, b)) {
-//     console.log(`✅✅✅Assertion Passed: ${a} === ${b} `);
-//   } else {
-//     console.log(`❌❌❌Assertion Failed: ${a} === ${b}`);
-//   }
-
-// };
-
-const eqArrays = require("./eqArrays");
-const assertArraysEqual = require("./assertArraysEqual")
-
-// ACTUAL FUNCTION
-
-const middle = function (array) {
-    let result = [];
-    if (array.length % 2 === 0) {
-        result = [array[array.length / 2 - 1], array[array.length / 2]]
-        return result
-    } else {
-        result =  [array[Math.round(array.length / 2 - 1)]];
-        return result
+const eqArrays = (array1,array2) => {
+    if (array1.length !== array2.length) {
+      console.log(false);
+      return false;
     }
-}
-// return result;
-
-
-// TEST CODE
-// For arrays with one or two elements
-// assertArraysEqual(middle([1]), [1], []) // => []
-// assertArraysEqual(middle([1, 2]), [1,2], []) // => []
-
-// // For arrays with odd number of elements
-// assertArraysEqual(middle([1, 2, 3]), [2])
-// assertArraysEqual(middle([1, 2, 3, 4, 5]), [3])
-
-// // For arrays with even number of elements
-// assertArraysEqual(middle([1, 2, 3, 4]), [2, 3])
-// assertArraysEqual(middle([1, 2, 3, 4, 5, 6]), [3, 4])
-
-module.exports = middle;
+    for (let i = 0; i < array1.length; i++) {
+      if (array1[i] !== array2[i]) {
+        return false;
+      }
+    }
+   
+    return true;
+  };
+  const assertArraysEqual = function(actual, expected) {
+    if (eqArrays(actual, expected)) {
+      console.log(`✅✅✅ Assertion Passed: ${actual} === ${expected}`);
+    } else {
+      console.log(`🛑🛑🛑 Assertion Failed: ${actual} !== ${expected}`);
+    }
+  };
+  
+  const middle = function(array) {
+    if (array.length === 1 || array.length === 2) {
+      return [];
+    }
+      else if (array.length % 2 !==0 ) {
+        
+        return [array[(Math.floor(array.length/2))]];
+      }
+      else {
+        
+        return [array[(array.length/2)-1],array[(array.length/2)]];
+       
+      }
+    }
+  
+  console.log(middle([1, 2]));
+  console.log(middle([1]));
+  console.log(middle([1, 2, 3])); // => [2]
+   console.log(middle([1, 3, 5, 7, 9]));
+   console.log(middle([1, 2, 7, 9, 5, 6]));
